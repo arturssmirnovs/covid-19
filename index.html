@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Corona Virus - Covid 19 Visualizer</title>
+    <meta name="description" content="Covid visuals is interactive Covid-19 visualizer, that highlights countries based on cases and other information. Goal is to provide simple and understandable overview of recent statistics.">
+    <meta name="author" content="arturssmirnovs">
+
+    <meta property="og:url" content="https://covidvisuals.com" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Corona Virus - Covid 19 Visualizer" />
+    <meta property="og:description" content="Covid visuals is interactive Covid-19 visualizer, that highlights countries based on cases and other information. Goal is to provide simple and understandable overview of recent statistics." />
+    <meta property="og:image" content="og.png" />
+
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="navigation">
+        <div class="logo">
+            <a href=""><i class="fas fa-virus"></i></a>
+        </div>
+
+        <ul id="navigation">
+            <li>
+                <a href="javascript:void(0)" class="one active"><i class="fas fa-biohazard"></i></a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" class="two"><i class="fas fa-viruses"></i></a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" class="three"><i class="fa fa-skull"></i></a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" class="four"><i class="fas fa-hand-holding-medical"></i></a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" class="about"><i class="fas fa-info"></i></a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content">
+
+        <h1>Corona virus COVID-19</h1>
+        <p>Global Cases</p>
+
+        <div class="stats">
+            <div class="stats-item infected">
+                <i class="fas fa-biohazard"></i>
+                <div class="summary">
+                    <h2>Infected</h2>
+                    <p id="total"></p>
+                </div>
+            </div>
+            <div class="stats-item active">
+                <i class="fas fa-viruses"></i>
+                <div class="summary">
+                    <h2>Active</h2>
+                    <p id="active"></p>
+                </div>
+            </div>
+            <div class="stats-item deaths">
+                <i class="fa fa-skull"></i>
+                <div class="summary">
+                    <h2>Deaths</h2>
+                    <p id="deaths"></p>
+                </div>
+            </div>
+            <div class="stats-item recovered">
+                <i class="fas fa-hand-holding-medical"></i>
+                <div class="summary">
+                    <h2>Recovered</h2>
+                    <p id="recovered"></p>
+                </div>
+            </div>
+        </div>
+
+        <p class="show-stats">Show statistics</p>
+
+        <div id="map-canvas" style=""></div>
+
+        <p class="show-about">About this project</p>
+
+    </div>
+
+    <div class="sidebar">
+        <i class="close fa fa-times"></i>
+       <div class="sidebar-content">
+           <h3>Cases information</h3>
+
+           <ul class="global-vs-country">
+               <li class="global active"><a href="#">Global</a></li>
+               <li class="country"><a href="#"></a></li>
+           </ul>
+
+           <div class="variants">
+               <ul id="stats-nav">
+                   <li class="one active" data-id="countries-stats-infected" data-id-two="country-stats-infected">
+                       <a href="javascript:void(0)">Infected</a>
+                   </li>
+                   <li class="two" data-id="countries-stats-active" data-id-two="country-stats-active">
+                       <a href="javascript:void(0)">Active</a>
+                   </li>
+                   <li class="three" data-id="countries-stats-deaths" data-id-two="country-stats-deaths">
+                       <a href="javascript:void(0)">Deaths</a>
+                   </li>
+                   <li class="four" data-id="countries-stats-recovered" data-id-two="country-stats-recovered">
+                       <a href="javascript:void(0)">Recovered</a>
+                   </li>
+               </ul>
+           </div>
+
+            <div class="stats-countries">
+                <p class="sort sort-new">Sort by new</p>
+                <p class="sort sort-total" style="display: none;">Sort by total</p>
+
+                <ul id="countries-stats-infected"></ul>
+                <ul id="countries-stats-active" style="display: none;"></ul>
+                <ul id="countries-stats-deaths" style="display: none;"></ul>
+                <ul id="countries-stats-recovered" style="display: none;"></ul>
+            </div>
+
+           <div class="stats-country">
+               <div id="country-stats-infected"></div>
+               <div id="country-stats-active" style="display: none;"></div>
+               <div id="country-stats-deaths" style="display: none;"></div>
+               <div id="country-stats-recovered" style="display: none;"></div>
+           </div>
+
+       </div>
+    </div>
+
+    <div class="loading">
+        <i class="fas fa-virus"></i>
+    </div>
+
+    <div id="modal" style="display: none">
+        <div class="wrapper">
+            <h1>Covid 19 statistics</h1>
+            <p>Covid visuals is interactive Covid-19 visualizer, that highlights countries based on cases and other information. Goal is to provide simple and understandable overview of recent statistics.</p>
+            <p>Made by <a href="https://github.com/arturssmirnovs/covid-19">@arturssmirnovs</a></p>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJqZIZEvkruE_J6zAKf61cW2zAASVlcnY"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,255 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0px; }
+
+body {
+  background: #282b2e; }
+
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif; }
+
+p, ul, a {
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif; }
+
+ul {
+  list-style: none; }
+
+a {
+  text-decoration: none; }
+
+.navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100px;
+  bottom: 0;
+  display: block;
+  background: #222529; }
+  .navigation .logo {
+    text-align: center;
+    padding: 50px 0px 100px 0px;
+    font-size: 30px; }
+    .navigation .logo i {
+      color: #f5c879; }
+  .navigation ul {
+    padding: 0px;
+    margin: 0px; }
+    .navigation ul li a {
+      display: block;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0px;
+      margin-bottom: 20px; }
+      .navigation ul li a.active {
+        border-right: 2px solid #f5c879; }
+
+.content {
+  margin: 0 450px 0 100px;
+  padding: 50px;
+  height: 100%; }
+  .content .show-stats, .content .show-about {
+    display: none; }
+  .content .stats .stats-item {
+    float: left;
+    width: 25%; }
+    .content .stats .stats-item i {
+      display: inline-block;
+      padding: 18px;
+      font-size: 22px;
+      color: #ffffff;
+      border-radius: 10px; }
+    .content .stats .stats-item .summary {
+      display: inline-block;
+      padding-left: 20px; }
+      .content .stats .stats-item .summary h2 {
+        margin: 0px 0px 5px 0px;
+        color: #b7bdca;
+        font-size: 13px; }
+      .content .stats .stats-item .summary p {
+        margin: 0px;
+        font-weight: bold; }
+    .content .stats .stats-item.infected i {
+      background: #ba3131; }
+    .content .stats .stats-item.active i {
+      background: #f6c779; }
+    .content .stats .stats-item.deaths i {
+      background: #4f4e53; }
+    .content .stats .stats-item.recovered i {
+      background: #5cc1ac; }
+  .content .stats:after {
+    clear: both;
+    display: block;
+    content: ""; }
+  .content #map-canvas {
+    width: 100%;
+    margin-top: 80px;
+    min-height: 600px;
+    background: #222529;
+    border-radius: 25px; }
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 450px;
+  bottom: 0;
+  display: block;
+  background: #222529; }
+  .sidebar .close {
+    display: none; }
+  .sidebar .sidebar-content {
+    padding: 20px; }
+    .sidebar .sidebar-content .global-vs-country {
+      padding: 0; }
+      .sidebar .sidebar-content .global-vs-country li {
+        display: inline-block;
+        margin-right: 20px; }
+        .sidebar .sidebar-content .global-vs-country li a {
+          text-transform: capitalize; }
+          .sidebar .sidebar-content .global-vs-country li a img {
+            height: 15px;
+            margin-right: 5px;
+            border-radius: 2px; }
+        .sidebar .sidebar-content .global-vs-country li.active {
+          border-bottom: 2px solid #f6c779;
+          font-weight: bold; }
+    .sidebar .sidebar-content .variants ul {
+      padding: 0px;
+      width: 100%;
+      border: solid 2px #4d4f52;
+      border-radius: 5px; }
+      .sidebar .sidebar-content .variants ul li {
+        display: inline-block;
+        width: 24.2%;
+        padding: 10px 0px;
+        text-align: center; }
+        .sidebar .sidebar-content .variants ul li a {
+          font-size: 13px;
+          color: #fff; }
+        .sidebar .sidebar-content .variants ul li.active {
+          border-bottom: 2px solid #f5c879; }
+    .sidebar .sidebar-content .stats-countries {
+      max-height: 600px;
+      overflow-y: scroll; }
+      .sidebar .sidebar-content .stats-countries ul {
+        padding: 0px; }
+        .sidebar .sidebar-content .stats-countries ul li {
+          width: 100%;
+          display: block;
+          margin-bottom: 15px; }
+          .sidebar .sidebar-content .stats-countries ul li img {
+            float: left;
+            width: 25px;
+            margin-right: 10px;
+            border-radius: 2px; }
+          .sidebar .sidebar-content .stats-countries ul li p {
+            margin: 0px;
+            width: 100%; }
+            .sidebar .sidebar-content .stats-countries ul li p .title {
+              color: #4d4f52;
+              font-size: 13px;
+              font-weight: bold; }
+            .sidebar .sidebar-content .stats-countries ul li p .new {
+              color: #f6c879;
+              font-size: 13px; }
+            .sidebar .sidebar-content .stats-countries ul li p .total {
+              color: #ffffff;
+              float: right; }
+          .sidebar .sidebar-content .stats-countries ul li:after {
+            content: "";
+            display: block;
+            clear: both; }
+
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: #222529;
+  text-align: center;
+  opacity: 0.9; }
+  .loading i {
+    color: #f5c879;
+    position: absolute;
+    top: 50%;
+    font-size: 120px;
+    margin-left: -60px;
+    margin-top: -60px;
+    transform: scale(1);
+    animation: pulse 2s infinite; }
+
+#modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); }
+  #modal .wrapper {
+    width: 80%;
+    margin: 100px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px; }
+    #modal .wrapper h1 {
+      color: #000000; }
+    #modal .wrapper p {
+      color: #000000; }
+    #modal .wrapper a {
+      color: #000000; }
+
+@media (max-width: 1440px) {
+  .content .stats .stats-item i {
+    display: block;
+    margin: 0 auto;
+    width: 22px; }
+  .content .stats .stats-item .summary {
+    display: block;
+    padding-left: 0px;
+    text-align: center;
+    margin-top: 10px; } }
+@media (max-width: 992px) {
+  .navigation {
+    display: none; }
+
+  .content {
+    margin: 0 0px 0 0px; }
+    .content .show-stats, .content .show-about {
+      cursor: pointer;
+      display: block;
+      text-align: center;
+      margin-top: 30px; }
+    .content .show-about {
+      margin-bottom: 50px; }
+
+  .sidebar {
+    width: 100%;
+    display: none; }
+    .sidebar .close {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 25px;
+      color: #fff;
+      padding: 20px; }
+    .sidebar.active {
+      display: block; } }
+@keyframes pulse {
+  0% {
+    transform: scale(0.95); }
+  70% {
+    transform: scale(1); }
+  100% {
+    transform: scale(0.95); } }
+
+/*# sourceMappingURL=style.css.map */

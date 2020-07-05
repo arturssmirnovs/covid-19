@@ -1,0 +1,361 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+body {
+  background: #282b2e;
+}
+h1,h2,h3,h4,h5,h6 {
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+}
+p, ul, a {
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+//f5c879 <- orange
+//b73030 <- reed
+
+.navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100px;
+  bottom: 0;
+  display: block;
+  background: #222529;
+  .logo {
+    text-align: center;
+    padding: 50px 0px 100px 0px;
+    font-size: 30px;
+    i {
+      color: #f5c879;
+    }
+  }
+  ul {
+    padding: 0px;
+    margin: 0px;
+    li {
+      a {
+        display: block;
+        color: #fff;
+        text-align: center;
+        padding: 20px 0px;
+        margin-bottom: 20px;
+        i {
+
+        }
+        &.active {
+          border-right: 2px solid #f5c879;
+        }
+      }
+    }
+  }
+}
+
+.content {
+  margin: 0 450px 0 100px;
+  padding: 50px;
+  height: 100%;
+  h1 {
+
+  }
+  p {
+
+  }
+  .show-stats, .show-about {
+    display: none;
+  }
+  .stats {
+    .stats-item {
+      float: left;
+      width: 25%;
+      i {
+        display: inline-block;
+        padding: 18px;
+        font-size: 22px;
+        color: #ffffff;
+        border-radius: 10px;
+      }
+      .summary {
+        display: inline-block;
+        padding-left: 20px;
+        h2 {
+          margin: 0px 0px 5px 0px;
+          color: #b7bdca;
+          font-size: 13px;
+        }
+        p {
+          margin: 0px;
+          font-weight: bold;
+        }
+      }
+      &.infected {
+        i {
+          background: #ba3131;
+        }
+      }
+      &.active {
+        i {
+          background: #f6c779;
+        }
+      }
+      &.deaths {
+        i {
+          background: #4f4e53;
+        }
+      }
+      &.recovered {
+        i {
+          background: #5cc1ac;
+        }
+      }
+    }
+    &:after {
+      clear: both;
+      display: block;
+      content: "";
+    }
+  }
+
+  #map-canvas {
+    width: 100%;
+    margin-top: 80px;
+    min-height: 600px;
+    background: #222529;
+    border-radius: 25px;
+  }
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 450px;
+  bottom: 0;
+  display: block;
+  background: #222529;
+  .close {
+    display: none;
+  }
+  .sidebar-content {
+    padding: 20px;
+    h3 {
+
+    }
+
+    .global-vs-country {
+      padding: 0;
+      li {
+        display: inline-block;
+        margin-right: 20px;
+        a {
+          text-transform: capitalize;
+          img {
+            height: 15px;
+            margin-right: 5px;
+            border-radius: 2px;
+          }
+        }
+        &.active {
+          border-bottom: 2px solid #f6c779;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .variants {
+      ul {
+        padding: 0px;
+        width: 100%;
+        border: solid 2px #4d4f52;
+        border-radius: 5px;
+        li {
+          display: inline-block;
+          width: 24.2%;
+          padding: 10px 0px;
+          text-align: center;
+          a {
+            font-size: 13px;
+            color: #fff;
+          }
+          &.active {
+            border-bottom: 2px solid #f5c879;
+          }
+        }
+      }
+    }
+    .stats-countries {
+      max-height: 600px;
+      overflow-y: scroll;
+      ul {
+        padding: 0px;
+        li {
+          width: 100%;
+          display: block;
+          margin-bottom: 15px;
+          img {
+            float: left;;
+            width: 25px;
+            margin-right: 10px;
+            border-radius: 2px;
+          }
+          p {
+            margin: 0px;
+            width: 100%;
+            .title {
+              color: #4d4f52;
+              font-size: 13px;
+              font-weight: bold;
+            }
+            .new {
+              color: #f6c879;
+              font-size: 13px;
+            }
+            .total {
+              color: #ffffff;
+              float: right;
+            }
+          }
+          &:after {
+            content: "";
+            display: block;
+            clear: both;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: #222529;
+  text-align: center;
+  opacity: 0.9;
+  i {
+    color: #f5c879;
+    position: absolute;
+    top: 50%;
+    font-size: 120px;
+    margin-left: -60px;
+    margin-top: -60px;
+    transform: scale(1);
+    animation: pulse 2s infinite;
+  }
+}
+
+#modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  .wrapper {
+    width: 80%;
+    margin: 100px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    h1 {
+      color: #000000;
+    }
+    p {
+      color: #000000;
+    }
+    a {
+      color: #000000;
+    }
+  }
+}
+
+@media (max-width: 1440px) {
+  .content {
+    .stats {
+      .stats-item {
+        i {
+          display: block;
+          margin: 0 auto;
+          width: 22px;
+        }
+        .summary {
+          display: block;
+          padding-left: 0px;
+          text-align: center;
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .navigation {
+    display: none;
+  }
+  .content {
+    margin: 0 0px 0 0px;
+    .show-stats, .show-about {
+      cursor: pointer;
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+    }
+    .show-about {
+      margin-bottom: 50px;
+    }
+  }
+  .sidebar {
+    width: 100%;
+    display: none;
+    .close {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 25px;
+      color: #fff;
+      padding: 20px;
+    }
+    &.active {
+      display: block;
+    }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+  }
+
+  70% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0.95);
+  }
+}
+
+
+//Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
