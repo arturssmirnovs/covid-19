@@ -12,4 +12,5 @@ https://covidvisuals.com/
 
 #### This project is not fully finished yet.
 
+![Alt text](screenshot.png?raw=true "Logo")
 ![Alt text](og.png?raw=true "Logo")
