@@ -1,0 +1,15 @@
+{
+  "name": "COVID-19 Visuals",
+  "short_name": "COVID-19 Visuals",
+  "description": "Covid visuals is interactive Covid-19 visualizer, that highlights countries based on cases and other information. Goal is to provide simple and understandable overview of recent statistics.",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "fullscreen",
+  "theme_color": "#282b2e",
+  "background_color": "#282b2e"
+}

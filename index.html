@@ -7,11 +7,23 @@
     <meta name="description" content="Covid visuals is interactive Covid-19 visualizer, that highlights countries based on cases and other information. Goal is to provide simple and understandable overview of recent statistics.">
     <meta name="author" content="arturssmirnovs">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <meta property="og:url" content="https://covidvisuals.com" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Corona Virus - Covid 19 Visualizer" />
     <meta property="og:description" content="Covid visuals is interactive Covid-19 visualizer, that highlights countries based on cases and other information. Goal is to provide simple and understandable overview of recent statistics." />
     <meta property="og:image" content="og.png" />
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="COVID-19 Visuals">
+    <meta name="apple-mobile-web-app-title" content="COVID-19 Visuals">
+    <meta name="theme-color" content="#282b2e">
+    <meta name="msapplication-navbutton-color" content="#282b2e">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="msapplication-starturl" content="/">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171672778-1"></script>
     <script>
@@ -57,7 +69,8 @@
     <div class="content">
 
         <h1>Corona virus COVID-19</h1>
-        <p>Global Cases</p>
+        <p id="place">Global Cases</p>
+        <p id="date"></p>
 
         <div class="stats">
             <div class="stats-item infected">

@@ -198,11 +198,15 @@ a {
     .stats-countries {
       max-height: 600px;
       overflow-y: scroll;
+      .sort {
+        cursor: pointer;
+      }
       ul {
         padding: 0px;
         li {
           width: 100%;
           display: block;
+          cursor: pointer;
           margin-bottom: 15px;
           img {
             float: left;;

@@ -135,11 +135,14 @@ a {
     .sidebar .sidebar-content .stats-countries {
       max-height: 600px;
       overflow-y: scroll; }
+      .sidebar .sidebar-content .stats-countries .sort {
+        cursor: pointer; }
       .sidebar .sidebar-content .stats-countries ul {
         padding: 0px; }
         .sidebar .sidebar-content .stats-countries ul li {
           width: 100%;
           display: block;
+          cursor: pointer;
           margin-bottom: 15px; }
           .sidebar .sidebar-content .stats-countries ul li img {
             float: left;

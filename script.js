@@ -7,6 +7,10 @@ COVID.general = function() {
 
     this.sort = 'total';
 
+    this.globalData = {};
+
+    this.countryData = {};
+
     this.mapOptions = {
         zoom: 3,
         minZoom: 1,
@@ -220,20 +224,34 @@ COVID.general = function() {
             this.loadGlobal();
         }.bind(this));
 
-        $(".global-vs-country li").on("click", function () {
+        $(".global-vs-country li").on("click", function (e) {
             $(".global-vs-country li").removeClass("active");
 
-            if ($(this).hasClass("global")) {
+            if ($(e.delegateTarget).hasClass("global")) {
                 $(".stats-countries").show();
                 $(".stats-country").hide();
+
+                $("#place").text("Global Cases")
+                $("#total").text(this.globalData.total)
+                $("#active").text(this.globalData.active)
+                $("#deaths").text(this.globalData.deaths)
+                $("#recovered").text(this.globalData.recovered)
+                $("#date").text(this.globalData.date)
             }
-            if ($(this).hasClass("country")) {
+            if ($(e.delegateTarget).hasClass("country")) {
                 $(".stats-countries").hide();
                 $(".stats-country").show();
+
+                $("#place").text(this.countryData.title)
+                $("#total").text(this.countryData.total)
+                $("#active").text(this.countryData.active)
+                $("#deaths").text(this.countryData.deaths)
+                $("#recovered").text(this.countryData.recovered)
+                $("#date").text(this.countryData.date)
             }
 
-            $(this).addClass("active");
-        });
+            $(e.delegateTarget).addClass("active");
+        }.bind(this));
 
         $(".sidebar .close").on("click", function () {
             $(".sidebar").removeClass("active");
@@ -263,10 +281,19 @@ COVID.general = function() {
 
             success : function(data) {
 
-                $("#total").text(data.Global.TotalConfirmed.toLocaleString(window.document.documentElement.lang))
-                $("#active").text((data.Global.TotalConfirmed-data.Global.TotalRecovered).toLocaleString(window.document.documentElement.lang))
-                $("#deaths").text(data.Global.TotalDeaths.toLocaleString(window.document.documentElement.lang))
-                $("#recovered").text(data.Global.TotalRecovered.toLocaleString(window.document.documentElement.lang))
+                this.globalData = {
+                    "total": data.Global.TotalConfirmed.toLocaleString(window.document.documentElement.lang),
+                    "active": (data.Global.TotalConfirmed-data.Global.TotalRecovered).toLocaleString(window.document.documentElement.lang),
+                    "deaths": data.Global.TotalDeaths.toLocaleString(window.document.documentElement.lang),
+                    "recovered": data.Global.TotalRecovered.toLocaleString(window.document.documentElement.lang),
+                    "date": new Date(data.Date).toLocaleDateString()
+                };
+
+                $("#total").text(this.globalData.total)
+                $("#date").text(this.globalData.date)
+                $("#active").text(this.globalData.active)
+                $("#deaths").text(this.globalData.deaths)
+                $("#recovered").text(this.globalData.recovered)
 
                 $("#countries-stats-infected").empty();
                 $("#countries-stats-deaths").empty();
@@ -472,6 +499,9 @@ COVID.general = function() {
                     var newdeath = 0;
                     var newrecover = 0;
                     var newactive = 0;
+                    var lat = 0;
+                    var lng = 0;
+                    var lastDate;
 
                     $.each(data, function(id,date) {
 
@@ -490,7 +520,32 @@ COVID.general = function() {
                         newdeath = date.Deaths;
                         newrecover = date.Recovered;
                         newactive = date.Confirmed-date.Recovered;
+
+                        lastDate = date.Date;
+
+                        lat = date.Lat;
+                        lng = date.Lon;
                     });
+
+
+                    this.countryData = {
+                        "title": title.charAt(0).toUpperCase() + title.slice(1)+" cases",
+                        "total": newcase.toLocaleString(window.document.documentElement.lang),
+                        "active": newactive.toLocaleString(window.document.documentElement.lang),
+                        "deaths": newdeath.toLocaleString(window.document.documentElement.lang),
+                        "recovered": newrecover.toLocaleString(window.document.documentElement.lang),
+                        "date": new Date(lastDate).toLocaleDateString()
+                    };
+
+                    $("#date").text(this.countryData.date)
+                    $("#place").text(this.countryData.title)
+                    $("#total").text(this.countryData.total)
+                    $("#active").text(this.countryData.active)
+                    $("#deaths").text(this.countryData.deaths)
+                    $("#recovered").text(this.countryData.recovered)
+
+                    this.map.setCenter(new google.maps.LatLng(lat, lng));
+                    this.map.setZoom(5);
 
                     var ctx = document.getElementById('chart-infected').getContext('2d');
                     ctx.restore();
