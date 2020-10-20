@@ -256,7 +256,7 @@ COVID.general = function() {
         $(".sidebar .close").on("click", function () {
             $(".sidebar").removeClass("active");
         });
-
+f
         $(".show-stats").on("click", function () {
             $(".sidebar").addClass("active");
         });
@@ -473,7 +473,7 @@ COVID.general = function() {
         $(".stats-country").show();
 
         $.ajax({
-            url : "https://api.covid19api.com/country/"+code,
+            url : "https://api.covid19api.com/total/dayone/country/"+code,
             cache : true,
             dataType : 'json',
             async : true,
