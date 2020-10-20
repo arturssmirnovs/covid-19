@@ -256,7 +256,7 @@ COVID.general = function() {
         $(".sidebar .close").on("click", function () {
             $(".sidebar").removeClass("active");
         });
-f
+
         $(".show-stats").on("click", function () {
             $(".sidebar").addClass("active");
         });
